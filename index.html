@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MerMax | Software de Control de Mermas e Inventario</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom animations for a premium feel */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up { animation: fadeUp 0.8s ease-out forwards; }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans selection:bg-green-200">
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md z-50 border-b border-slate-100 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-2">
+                    <svg class="w-10 h-10" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M40 48 L68 20 M68 20 L53 20 M68 20 L68 35" stroke="#16A34A" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <path d="M16 92 V46 L35 64 L54 46" stroke="#0B2545" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <path d="M66 46 L85 64 L104 46 V92" stroke="#6B21A8" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    </svg>
+                    <span class="font-black text-2xl tracking-tight text-slate-900">MERMAX</span>
+                </div>
+                <!-- Enlaces -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#nosotros" class="text-slate-600 hover:text-green-600 font-medium transition-colors">Nosotros</a>
+                    <a href="#ventajas" class="text-slate-600 hover:text-green-600 font-medium transition-colors">Por qué elegirnos</a>
+                    <a href="#demo" class="text-slate-600 hover:text-green-600 font-medium transition-colors">El Software</a>
+                    <a href="#como-adquirir" class="text-slate-600 hover:text-green-600 font-medium transition-colors">Cómo funciona</a>
+                    <a href="#precios" class="text-slate-600 hover:text-green-600 font-medium transition-colors">Precios</a>
+                </div>
+                <!-- Botón -->
+                <div class="hidden md:flex">
+                    <a href="#precios" class="bg-slate-900 hover:bg-green-600 text-white px-6 py-2.5 rounded-full font-bold transition-colors shadow-lg">Comienza ahora</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION (INICIO) -->
+    <section class="pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-block bg-green-100 text-green-700 font-bold px-4 py-1.5 rounded-full text-sm mb-6 animate-fade-up">
+                🚀 El futuro de la rentabilidad gastronómica
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight animate-fade-up delay-100">
+                Tu inventario, <span class="text-green-600">en buenas manos.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-10 animate-fade-up delay-200">
+                Software SaaS especializado para restaurantes y hoteles. Menos merma, más ganancia. Toma el control absoluto de tus ingredientes, evita caducidades y maximiza el margen de cada platillo.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-up delay-200">
+                <a href="#precios" class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-xl shadow-green-200">Ver Planes y Precios</a>
+                <a href="#demo" class="bg-white hover:bg-slate-50 text-slate-900 border-2 border-slate-200 px-8 py-4 rounded-full font-bold text-lg transition-all">Explorar la plataforma</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. SOBRE NOSOTROS -->
+    <section id="nosotros" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-black text-slate-900 mb-6">Nuestra Misión</h2>
+                    <p class="text-slate-600 text-lg mb-4 leading-relaxed">
+                        Nacimos con un propósito claro: dotar al sector hotelero y restaurantero de tecnología accesible, intuitiva y potente. Entendemos que el control de inventarios no debe ser un dolor de cabeza, sino el motor principal de tu rentabilidad.
+                    </p>
+                    <p class="text-slate-600 text-lg leading-relaxed">
+                        Mediante algoritmos eficientes y tableros interactivos, en <strong class="text-slate-900">MerMax</strong> convertimos la complejidad operativa de la cocina en decisiones claras. Queremos erradicar el desperdicio de alimentos desde la raíz y ayudar a que cada negocio alcance su máximo potencial económico.
+                    </p>
+                </div>
+                <div class="bg-slate-100 rounded-3xl p-8 relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 text-green-500 opacity-20">
+                        <svg class="w-64 h-64" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13h-13L12 6.5zM11 10v4h2v-4h-2zm0 5v2h2v-2h-2z"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4 relative z-10">Más de un software, un aliado estratégico.</h3>
+                    <ul class="space-y-4 relative z-10">
+                        <li class="flex items-center gap-3"><span class="text-green-600 text-xl">✔️</span> Diseño pensado para chefs y dueños.</li>
+                        <li class="flex items-center gap-3"><span class="text-green-600 text-xl">✔️</span> Economía Circular y sustentabilidad.</li>
+                        <li class="flex items-center gap-3"><span class="text-green-600 text-xl">✔️</span> Soporte enfocado en tu crecimiento.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. POR QUÉ ELEGIRNOS -->
+    <section id="ventajas" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-black mb-4">¿Por qué elegir MerMax?</h2>
+                <p class="text-slate-400 text-lg">No somos un sistema de punto de venta genérico. Somos la solución especializada en el verdadero problema: el desperdicio oculto.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Tarjeta 1 -->
+                <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700 hover:border-green-500 transition-colors">
+                    <div class="w-14 h-14 bg-green-500/20 text-green-400 rounded-xl flex items-center justify-center text-3xl mb-6">⚠️</div>
+                    <h3 class="text-xl font-bold mb-3">Alertas de Caducidad</h3>
+                    <p class="text-slate-400">Nuestro semáforo inteligente te avisa antes de que los ingredientes se echen a perder, permitiéndote tomar acción a tiempo.</p>
+                </div>
+                <!-- Tarjeta 2 -->
+                <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700 hover:border-green-500 transition-colors">
+                    <div class="w-14 h-14 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center text-3xl mb-6">👨‍🍳</div>
+                    <h3 class="text-xl font-bold mb-3">Inteligencia Culinaria</h3>
+                    <p class="text-slate-400">¿Tomates a punto de caducar? MerMax te sugiere recetas o platillos del día para convertirlos en dinero en lugar de basura.</p>
+                </div>
+                <!-- Tarjeta 3 -->
+                <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700 hover:border-green-500 transition-colors">
+                    <div class="w-14 h-14 bg-purple-500/20 text-purple-400 rounded-xl flex items-center justify-center text-3xl mb-6">📊</div>
+                    <h3 class="text-xl font-bold mb-3">Analítica Financiera</h3>
+                    <p class="text-slate-400">Mide tu éxito en tiempo real. Conoce exactamente cuántos dólares estás ahorrando y la cantidad de CO₂ que evitas al mes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. EL SOFTWARE (DEMO VISUAL) -->
+    <section id="demo" class="py-20 bg-slate-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">Un vistazo al futuro de tu cocina</h2>
+            <p class="text-slate-600 text-lg max-w-2xl mx-auto">Una interfaz limpia, moderna y fácil de usar, diseñada para que cualquier miembro de tu equipo pueda registrar información en segundos.</p>
+        </div>
+
+        <!-- MOCKUP DE COMPUTADORA -->
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="rounded-t-2xl bg-slate-200 border-x border-t border-slate-300 p-3 flex items-center gap-2 shadow-xl">
+                <div class="w-3.5 h-3.5 rounded-full bg-red-400"></div>
+                <div class="w-3.5 h-3.5 rounded-full bg-yellow-400"></div>
+                <div class="w-3.5 h-3.5 rounded-full bg-green-400"></div>
+                <div class="mx-auto bg-white px-32 py-1 rounded text-xs text-slate-400 font-mono">app.mermax.com</div>
+            </div>
+            <!-- FAKE UI INSIDE THE MOCKUP -->
+            <div class="bg-white border-x border-b border-slate-300 rounded-b-2xl shadow-2xl flex h-[500px] overflow-hidden">
+                <!-- Fake Sidebar -->
+                <div class="w-1/4 bg-slate-900 p-6 hidden md:block">
+                    <div class="flex items-center gap-2 mb-8 text-white font-bold text-lg">
+                        <div class="w-6 h-6 bg-green-500 rounded"></div> MERMAX
+                    </div>
+                    <div class="space-y-3">
+                        <div class="bg-green-600 text-white rounded-lg p-2 text-sm font-semibold">📊 Dashboard</div>
+                        <div class="text-slate-400 p-2 text-sm">📦 Inventario</div>
+                        <div class="text-slate-400 p-2 text-sm">🗑️ Mermas</div>
+                        <div class="text-slate-400 p-2 text-sm">📈 Analítica</div>
+                    </div>
+                </div>
+                <!-- Fake Main Content -->
+                <div class="w-full md:w-3/4 p-8 bg-slate-50 flex flex-col gap-6">
+                    <div class="flex justify-between">
+                        <h3 class="font-bold text-2xl text-slate-800">Dashboard General</h3>
+                        <span class="bg-white px-4 py-1 rounded-full text-xs font-bold border border-slate-200 shadow-sm">Administrador</span>
+                    </div>
+                    <!-- Fake KPI Cards -->
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="bg-white p-4 rounded-xl border-t-4 border-red-500 shadow-sm">
+                            <div class="text-[10px] text-slate-400 font-bold uppercase">Merma Mensual</div>
+                            <div class="text-2xl font-black text-red-600 mt-1">$1,240</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border-t-4 border-green-500 shadow-sm">
+                            <div class="text-[10px] text-slate-400 font-bold uppercase">Ahorro Estimado</div>
+                            <div class="text-2xl font-black text-green-600 mt-1">$4,850</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border-t-4 border-blue-500 shadow-sm">
+                            <div class="text-[10px] text-slate-400 font-bold uppercase">Estado Semáforo</div>
+                            <div class="text-2xl font-black text-blue-600 mt-1">92% Fresco</div>
+                        </div>
+                    </div>
+                    <!-- Fake Table -->
+                    <div class="bg-white flex-1 rounded-xl p-4 shadow-sm border border-slate-100">
+                        <h4 class="font-bold text-slate-700 mb-4 text-sm border-b pb-2">⚠️ Alertas de Inventario</h4>
+                        <div class="space-y-3">
+                            <div class="bg-orange-50 border-l-4 border-orange-400 p-3 rounded text-sm text-slate-700">
+                                <b>Tomate Saladet (5kg)</b> - Próximo a caducar (Mañana). Sugerencia: Preparar Salsa de la Casa.
+                            </div>
+                            <div class="bg-green-50 border-l-4 border-green-500 p-3 rounded text-sm text-slate-700">
+                                <b>Pechuga de Pollo (15kg)</b> - Estado óptimo de conservación.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CÓMO ADQUIRIRLO -->
+    <section id="como-adquirir" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-16">Comienza a optimizar en 3 pasos</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+                <!-- Connector Line for Desktop -->
+                <div class="hidden md:block absolute top-12 left-[16%] right-[16%] h-1 bg-slate-200 z-0"></div>
+                
+                <div class="relative z-10">
+                    <div class="w-24 h-24 mx-auto bg-slate-900 text-white rounded-full flex items-center justify-center text-3xl font-black border-8 border-white shadow-xl mb-6">1</div>
+                    <h3 class="text-xl font-bold mb-3">Elige tu Plan</h3>
+                    <p class="text-slate-600">Suscríbete desde nuestra web con un pago mensual transparente, sin contratos forzosos.</p>
+                </div>
+                
+                <div class="relative z-10">
+                    <div class="w-24 h-24 mx-auto bg-green-600 text-white rounded-full flex items-center justify-center text-3xl font-black border-8 border-white shadow-xl mb-6">2</div>
+                    <h3 class="text-xl font-bold mb-3">Configura tu Cocina</h3>
+                    <p class="text-slate-600">Crea los accesos para tu Chef, registra tu inventario inicial y establece tus recetas clave en el sistema.</p>
+                </div>
+                
+                <div class="relative z-10">
+                    <div class="w-24 h-24 mx-auto bg-slate-900 text-white rounded-full flex items-center justify-center text-3xl font-black border-8 border-white shadow-xl mb-6">3</div>
+                    <h3 class="text-xl font-bold mb-3">Ahorra en Automático</h3>
+                    <p class="text-slate-600">Deja que MerMax vigile tu stock, te avise de caducidades y convierta tus mermas en ganancias.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. PRECIOS -->
+    <section id="precios" class="py-20 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">Planes claros, resultados reales</h2>
+                <p class="text-slate-600 text-lg">El software se paga solo con lo que ahorrarás en mermas durante la primera semana de uso.</p>
+            </div>
+            
+            <div class="max-w-lg mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border-2 border-green-500 transform hover:scale-105 transition-transform duration-300">
+                <div class="bg-slate-900 text-center py-6">
+                    <span class="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-2 inline-block">Licencia Pro (SaaS)</span>
+                    <h3 class="text-white text-5xl font-black mt-3">$45 <span class="text-xl text-slate-400 font-medium">USD / mes</span></h3>
+                </div>
+                <div class="p-8">
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-slate-700">
+                            <span class="text-green-500 font-bold mr-3">✓</span> Usuarios y Roles Ilimitados
+                        </li>
+                        <li class="flex items-center text-slate-700">
+                            <span class="text-green-500 font-bold mr-3">✓</span> Control de Inventario en Tiempo Real
+                        </li>
+                        <li class="flex items-center text-slate-700">
+                            <span class="text-green-500 font-bold mr-3">✓</span> Semáforo de Caducidad (HORECA)
+                        </li>
+                        <li class="flex items-center text-slate-700">
+                            <span class="text-green-500 font-bold mr-3">✓</span> Analítica y Ahorro de CO₂
+                        </li>
+                        <li class="flex items-center text-slate-700">
+                            <span class="text-green-500 font-bold mr-3">✓</span> Alianzas para Donaciones
+                        </li>
+                        <li class="flex items-center text-slate-700">
+                            <span class="text-green-500 font-bold mr-3">✓</span> Soporte técnico prioritario
+                        </li>
+                    </ul>
+                    <button class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-xl transition-colors shadow-lg shadow-green-200">
+                        Adquirir Licencia Ahora
+                    </button>
+                    <p class="text-center text-xs text-slate-400 mt-4">Cancela en cualquier momento. Sin cargos ocultos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="md:col-span-2">
+                <div class="flex items-center gap-2 mb-4">
+                    <div class="w-8 h-8 bg-green-600 rounded flex items-center justify-center text-white font-bold">M</div>
+                    <span class="font-black text-xl text-white tracking-tight">MERMAX</span>
+                </div>
+                <p class="text-sm max-w-sm">Optimizando la industria gastronómica y hotelera, reduciendo el desperdicio un restaurante a la vez.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Producto</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-green-400">Características</a></li>
+                    <li><a href="#precios" class="hover:text-green-400">Precios</a></li>
+                    <li><a href="#" class="hover:text-green-400">Casos de Éxito</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Legal</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-green-400">Términos de Servicio</a></li>
+                    <li><a href="#" class="hover:text-green-400">Política de Privacidad</a></li>
+                    <li><a href="#" class="hover:text-green-400">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-slate-800 text-sm text-center">
+            &copy; 2026 MerMax Software SaaS. Todos los derechos reservados.
+        </div>
+    </footer>
+
+</body>
+</html>
