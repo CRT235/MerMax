@@ -47,6 +47,7 @@
         /* Custom Slider Styling */
         input[type=range] {
             -webkit-appearance: none;
+            appearance: none;
             width: 100%;
             background: transparent;
         }
@@ -95,14 +96,15 @@
                     <a href="#estadisticas" class="text-slate-600 hover:text-purplebrand font-semibold transition-colors">Simulador Anual</a>
                     <a href="#ventajas" class="text-slate-600 hover:text-purplebrand font-semibold transition-colors">¿Por qué elegirnos?</a>
                     <a href="#demo" class="text-slate-600 hover:text-purplebrand font-semibold transition-colors">Software</a>
+                    <a href="#descargar" class="text-greenbrand hover:text-greendark font-bold transition-colors">Descargar demo</a>
                     <a href="#como-adquirir" class="text-slate-600 hover:text-purplebrand font-semibold transition-colors">Cómo adquirirlo</a>
-                    <a href="#precios" class="text-slate-600 hover:text-purplebrand font-semibold transition-colors">Precios y Planes</a>
+                    
                 </div>
 
                 <!-- Botón CTA -->
                 <div class="hidden md:flex items-center gap-3">
                     <a href="#precios" class="bg-gradient-to-r from-navy via-purplebrand to-purplelight hover:opacity-95 text-white px-6 py-2.5 rounded-full font-bold transition-all glow-purple text-sm">
-                        Solicitar Licencia
+                        Comprar Licencia
                     </a>
                 </div>
             </div>
@@ -490,6 +492,60 @@
     </section>
 
     <!-- 6. CÓMO ADQUIRIRLO (CON INSTALACIÓN SIN COSTO) -->
+    <!-- DESCARGA DE LA VERSION PORTABLE -->
+    <section id="descargar" class="py-20 bg-navy text-white border-y border-slate-700 scroll-mt-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="relative overflow-hidden rounded-3xl bg-white/5 border border-white/10 p-8 md:p-12 text-center shadow-2xl">
+                <div class="absolute -top-20 -right-20 w-64 h-64 bg-greenbrand/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-24 -left-20 w-64 h-64 bg-purplebrand/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10">
+                    <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-greenbrand/15 border border-greenbrand/40 text-greenbrand text-xs font-black uppercase tracking-widest">
+                        <span class="w-2 h-2 rounded-full bg-greenbrand"></span>
+                        Demo gratuita
+                    </span>
+
+                    <div class="w-16 h-16 mx-auto mt-6 mb-5 rounded-2xl bg-greenbrand/15 border border-greenbrand/30 flex items-center justify-center">
+                        <svg class="w-8 h-8 text-greenbrand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="3" y="4" width="18" height="13" rx="2"></rect>
+                            <path d="M8 21h8M12 17v4M8 9h8M8 12h5"></path>
+                        </svg>
+                    </div>
+
+                    <h2 class="text-3xl md:text-4xl font-black mb-4">Prueba MerMax en tu computadora</h2>
+                    <p class="max-w-2xl mx-auto text-slate-300 text-base md:text-lg leading-relaxed mb-8">
+                        Descarga MerMax Portable y explora sus herramientas para administrar inventario,
+                        controlar productos y dar seguimiento a las mermas de tu negocio.
+                    </p>
+
+                    <div class="flex flex-wrap justify-center gap-3 mb-8 text-sm">
+                        <span class="px-4 py-2 rounded-full bg-white/10 border border-white/10 text-slate-200">Windows 10 / 11</span>
+                        <span class="px-4 py-2 rounded-full bg-white/10 border border-white/10 text-slate-200">Versión 1.0.0</span>
+                        <span class="px-4 py-2 rounded-full bg-white/10 border border-white/10 text-slate-200">Portable</span>
+                    </div>
+
+                    <a href="https://github.com/CRT235/MerMax/releases/latest/download/MERMAX-Portable-1.0.0.exe"
+                       class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-greenbrand hover:bg-green-400 text-navy font-extrabold text-base md:text-lg shadow-lg hover:shadow-greenbrand/20 hover:-translate-y-1 transition-all"
+                       aria-label="Descargar MerMax Portable versión 1.0.0 para Windows">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <path d="m7 10 5 5 5-5M12 15V3"></path>
+                        </svg>
+                        Descargar demo gratuita
+                    </a>
+
+                    <p class="mt-5 text-xs text-slate-400">
+                        Archivo: MERMAX-Portable-1.0.0.exe
+                    </p>
+                    <p class="mt-2 max-w-xl mx-auto text-xs text-slate-400">
+                        Descarga únicamente desde este sitio oficial. Si Windows muestra una advertencia de seguridad,
+                        verifica que el archivo provenga del repositorio oficial de MerMax antes de ejecutarlo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="como-adquirir" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <span class="text-purplebrand font-bold uppercase tracking-widest text-xs">Proceso Rápido y Sin Fricciones</span>
@@ -677,6 +733,7 @@
                     <li><a href="#nosotros" class="hover:text-greenbrand transition-colors">Sobre Nosotros</a></li>
                     <li><a href="#estadisticas" class="hover:text-greenbrand transition-colors">Simulador de Ahorro Anual</a></li>
                     <li><a href="#demo" class="hover:text-greenbrand transition-colors">Demo Interactiva</a></li>
+                    <li><a href="#descargar" class="hover:text-greenbrand transition-colors">Descargar demo gratuita</a></li>
                     <li><a href="#precios" class="hover:text-greenbrand transition-colors">Plan Anual (2 Meses Gratis)</a></li>
                 </ul>
             </div>
