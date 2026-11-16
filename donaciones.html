@@ -3,238 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro para Recibir Donaciones</title>
+    <title>Registro de Beneficiarios - MerMax</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            900: '#0B0F19',
+                            800: '#161B28',
+                            700: '#1F2537'
+                        },
+                        mermax: {
+                            green: '#00D185',
+                            greenHover: '#00B875',
+                            purple: '#7B2CBF',
+                            purpleLight: '#9D4EDD'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f9fafb;
+            background-color: #0B0F19;
+            color: #e2e8f0;
         }
-        /* Custom scrollbar for better aesthetics */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1; 
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8; 
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0F19; }
+        ::-webkit-scrollbar-thumb { background: #1F2537; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
+        
+        /* Custom Checkbox/Radio styles */
+        .mermax-check {
+            accent-color: #00D185;
+            width: 1.25rem;
+            height: 1.25rem;
+            cursor: pointer;
         }
     </style>
 </head>
-<body class="text-gray-800 antialiased min-h-screen flex flex-col">
+<body class="antialiased min-h-screen flex flex-col">
 
     <!-- Navbar -->
-    <nav class="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-40">
+    <nav class="bg-navy-800 border-b border-navy-700 sticky top-0 z-40 shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center gap-2">
-                    <!-- Logo Icon (SVG) -->
-                    <svg class="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                    </svg>
-                    <span class="font-bold text-xl text-gray-900 tracking-tight">DonaRed</span>
-                </div>
-                <div>
-                    <a href="#" class="text-sm font-medium text-gray-500 hover:text-emerald-600 transition-colors">¿Cómo funciona?</a>
+                <div class="flex items-center gap-3">
+                    <!-- Icon -->
+                    <div class="bg-mermax-purple/20 p-2 rounded-lg">
+                        <svg class="w-6 h-6 text-mermax-purpleLight" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                        </svg>
+                    </div>
+                    <span class="font-extrabold text-xl text-white tracking-tight">MerMax <span class="text-mermax-green font-medium">Beneficiarios</span></span>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="flex-grow">
-        <!-- Hero Section -->
-        <div class="bg-emerald-700 text-white py-12 md:py-16">
-            <div class="max-w-3xl mx-auto px-4 text-center">
-                <h1 class="text-3xl md:text-4xl font-extrabold mb-4">Registra tu Causa</h1>
-                <p class="text-emerald-100 text-lg">Conecta con personas dispuestas a ayudar. Completa el formulario a continuación para crear tu perfil de donación de forma segura y transparente.</p>
-            </div>
+    <main class="flex-grow py-10 px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header -->
+        <div class="max-w-3xl mx-auto text-center mb-10">
+            <span class="bg-navy-700 text-mermax-green text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block">Red de Apoyo</span>
+            <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Registro para Recibir Alimentos</h1>
+            <p class="text-gray-400 text-lg">Regístrate para conectar con restaurantes e iniciativas locales. Aprovecha alimentos en perfecto estado y ayuda a tu comunidad.</p>
         </div>
 
-        <!-- Form Section -->
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 -mt-8">
-            <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 p-6 md:p-10">
+        <!-- Form Card -->
+        <div class="max-w-3xl mx-auto bg-navy-800 rounded-2xl shadow-2xl border border-navy-700 overflow-hidden">
+            <div class="h-2 w-full bg-gradient-to-r from-mermax-purple to-mermax-green"></div>
+            
+            <form id="beneficiaryForm" class="p-6 sm:p-10 space-y-8" novalidate>
                 
-                <form id="donationForm" class="space-y-6">
-                    
-                    <!-- Section Title -->
-                    <div class="border-b border-gray-200 pb-4 mb-6">
-                        <h2 class="text-xl font-semibold text-gray-900">Información del Solicitante</h2>
-                        <p class="text-sm text-gray-500 mt-1">Datos básicos de la persona u organización que recibirá los fondos.</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Full Name -->
-                        <div class="md:col-span-2">
-                            <label for="fullName" class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo o de la Organización *</label>
-                            <input type="text" id="fullName" name="fullName" required 
-                                class="w-full px-4 py-2.5 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
-                                placeholder="Ej. Fundación Esperanza o Juan Pérez">
-                        </div>
-
-                        <!-- Email -->
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico *</label>
-                            <input type="email" id="email" name="email" required 
-                                class="w-full px-4 py-2.5 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
-                                placeholder="correo@ejemplo.com">
-                        </div>
-
-                        <!-- Phone -->
-                        <div>
-                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Teléfono de Contacto</label>
-                            <input type="tel" id="phone" name="phone" 
-                                class="w-full px-4 py-2.5 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
-                                placeholder="(555) 123-4567">
-                        </div>
-                    </div>
-
-                    <!-- Section Title -->
-                    <div class="border-b border-gray-200 pb-4 mb-6 pt-6">
-                        <h2 class="text-xl font-semibold text-gray-900">Detalles de la Causa</h2>
-                        <p class="text-sm text-gray-500 mt-1">Cuéntanos sobre el propósito de las donaciones.</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Cause Title -->
-                        <div class="md:col-span-2">
-                            <label for="causeTitle" class="block text-sm font-medium text-gray-700 mb-1">Título de la Causa *</label>
-                            <input type="text" id="causeTitle" name="causeTitle" required 
-                                class="w-full px-4 py-2.5 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
-                                placeholder="Ej. Operación de corazón para María">
-                        </div>
-
-                        <!-- Category -->
-                        <div>
-                            <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Categoría *</label>
-                            <select id="category" name="category" required 
-                                class="w-full px-4 py-2.5 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors appearance-none">
-                                <option value="" disabled selected>Selecciona una categoría</option>
-                                <option value="salud">Salud y Tratamientos Médicos</option>
-                                <option value="educacion">Educación y Becas</option>
-                                <option value="alimentacion">Alimentación y Comedores</option>
-                                <option value="emergencia">Emergencias y Desastres</option>
-                                <option value="animales">Rescate Animal</option>
-                                <option value="otro">Otro</option>
-                            </select>
-                        </div>
-
-                        <!-- Target Amount -->
-                        <div>
-                            <label for="amount" class="block text-sm font-medium text-gray-700 mb-1">Monto Objetivo Solicitado *</label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <span class="text-gray-500 sm:text-sm">$</span>
-                                </div>
-                                <input type="number" id="amount" name="amount" required min="1" step="any"
-                                    class="w-full pl-8 pr-4 py-2.5 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
-                                    placeholder="0.00">
-                            </div>
-                        </div>
-
-                        <!-- Description -->
-                        <div class="md:col-span-2">
-                            <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Descripción Detallada *</label>
-                            <p class="text-xs text-gray-500 mb-2">Explica por qué necesitas la donación y cómo se utilizarán los fondos. Sé lo más transparente posible.</p>
-                            <textarea id="description" name="description" rows="5" required 
-                                class="w-full px-4 py-2.5 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors resize-none"
-                                placeholder="Escribe tu historia aquí..."></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Section Title -->
-                    <div class="border-b border-gray-200 pb-4 mb-6 pt-6">
-                        <h2 class="text-xl font-semibold text-gray-900">Recepción de Fondos</h2>
-                        <p class="text-sm text-gray-500 mt-1">¿Cómo deseas recibir las donaciones?</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Payment Method -->
-                        <div>
-                            <label for="paymentMethod" class="block text-sm font-medium text-gray-700 mb-1">Método de Recepción *</label>
-                            <select id="paymentMethod" name="paymentMethod" required 
-                                class="w-full px-4 py-2.5 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors appearance-none"
-                                onchange="updatePaymentDetailsLabel()">
-                                <option value="" disabled selected>Selecciona un método</option>
-                                <option value="clabe">CLABE Interbancaria (México)</option>
-                                <option value="paypal">Cuenta de PayPal</option>
-                                <option value="zelle">Zelle</option>
-                                <option value="cripto">Billetera Cripto (BTC/ETH)</option>
-                            </select>
-                        </div>
-
-                        <!-- Payment Details -->
-                        <div>
-                            <label id="paymentDetailsLabel" for="paymentDetails" class="block text-sm font-medium text-gray-700 mb-1">Detalles de la Cuenta *</label>
-                            <input type="text" id="paymentDetails" name="paymentDetails" required 
-                                class="w-full px-4 py-2.5 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
-                                placeholder="Ingresa los datos de recepción">
-                        </div>
-                    </div>
-
-                    <!-- Terms and Submit -->
-                    <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <div class="flex items-start">
-                            <div class="flex items-center h-5">
-                                <input id="terms" name="terms" type="checkbox" required class="w-4 h-4 text-emerald-600 bg-gray-100 border-gray-300 rounded focus:ring-emerald-500">
-                            </div>
-                            <div class="ml-2 text-sm">
-                                <label for="terms" class="font-medium text-gray-700">Acepto los <a href="#" class="text-emerald-600 hover:underline">Términos y Condiciones</a> y confirmo que la información es verídica.</label>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="w-full sm:w-auto px-8 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
-                            Registrar Causa
-                        </button>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 mt-12">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-gray-400 text-sm">&copy; 2023 DonaRed. Una plataforma para conectar corazones solidarios.</p>
-        </div>
-    </footer>
-
-    <!-- Success Modal (Hidden by default) -->
-    <div id="successModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <!-- Background backdrop -->
-        <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-            <div class="fixed inset-0 transition-opacity bg-gray-900 bg-opacity-75 backdrop-blur-sm" aria-hidden="true"></div>
-
-            <!-- This element is to trick the browser into centering the modal contents. -->
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-
-            <!-- Modal panel -->
-            <div class="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-2xl shadow-2xl sm:my-8 sm:align-middle sm:max-w-md sm:w-full sm:p-6">
+                <!-- 1. Beneficiary Info -->
                 <div>
-                    <div class="flex items-center justify-center w-16 h-16 mx-auto bg-green-100 rounded-full">
-                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
+                    <h2 class="text-xl font-bold text-white mb-5 border-b border-navy-700 pb-2">1. Perfil del Beneficiario</h2>
+                    
+                    <!-- Type of Beneficiary -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-300 mb-3">Tipo de Registro *</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <label class="flex items-center space-x-3 p-4 bg-navy-900 border border-navy-700 rounded-lg cursor-pointer hover:border-mermax-purple transition-colors">
+                                <input type="radio" name="beneficiaryType" value="organizacion" class="mermax-check" required>
+                                <div>
+                                    <span class="block text-gray-200 font-medium">Organización / Fundación</span>
+                                    <span class="block text-gray-500 text-xs mt-1">Banco de alimentos, albergue, ONG</span>
+                                </div>
+                            </label>
+                            <label class="flex items-center space-x-3 p-4 bg-navy-900 border border-navy-700 rounded-lg cursor-pointer hover:border-mermax-purple transition-colors">
+                                <input type="radio" name="beneficiaryType" value="persona" class="mermax-check" required>
+                                <div>
+                                    <span class="block text-gray-200 font-medium">Persona Física</span>
+                                    <span class="block text-gray-500 text-xs mt-1">Iniciativa individual o comunitaria</span>
+                                </div>
+                            </label>
+                        </div>
                     </div>
-                    <div class="mt-4 text-center">
-                        <h3 class="text-xl font-bold text-gray-900" id="modal-title">¡Registro Exitoso!</h3>
-                        <div class="mt-2">
-                            <p class="text-sm text-gray-500">Tu causa ha sido registrada correctamente. Nuestro equipo la revisará y pronto estará visible para la comunidad de donantes.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="md:col-span-2">
+                            <label for="entityName" class="block text-sm font-medium text-gray-300 mb-1">Nombre Completo / Razón Social *</label>
+                            <input type="text" id="entityName" name="entityName" required 
+                                class="w-full bg-navy-900 border border-navy-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-mermax-purple focus:ring-1 focus:ring-mermax-purple transition-colors"
+                                placeholder="Ej. Comedor Esperanza o Juan Pérez">
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Correo Electrónico *</label>
+                            <input type="email" id="email" name="email" required 
+                                class="w-full bg-navy-900 border border-navy-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-mermax-purple focus:ring-1 focus:ring-mermax-purple transition-colors"
+                                placeholder="contacto@ejemplo.com">
+                        </div>
+
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-300 mb-1">Teléfono de Contacto *</label>
+                            <input type="tel" id="phone" name="phone" required 
+                                class="w-full bg-navy-900 border border-navy-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-mermax-purple focus:ring-1 focus:ring-mermax-purple transition-colors"
+                                placeholder="10 dígitos">
                         </div>
                     </div>
                 </div>
-                <div class="mt-6 sm:mt-8">
-                    <button type="button" onclick="closeModal()" class="inline-flex justify-center w-full px-4 py-2.5 text-base font-medium text-white bg-emerald-600 border border-transparent rounded-lg shadow-sm hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 sm:text-sm transition-colors">
-                        Entendido, gracias
+
+                <!-- 2. Location & Logistics -->
+                <div>
+                    <h2 class="text-xl font-bold text-white mb-5 border-b border-navy-700 pb-2">2. Ubicación y Logística</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="md:col-span-2">
+                            <label for="address" class="block text-sm font-medium text-gray-300 mb-1">Dirección Completa de Recepción *</label>
+                            <input type="text" id="address" name="address" required 
+                                class="w-full bg-navy-900 border border-navy-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-mermax-purple focus:ring-1 focus:ring-mermax-purple transition-colors"
+                                placeholder="Calle, Número, Colonia, Código Postal, Ciudad">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label for="logistics" class="block text-sm font-medium text-gray-300 mb-1">Capacidad Logística *</label>
+                            <select id="logistics" name="logistics" required 
+                                class="w-full bg-navy-900 border border-navy-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-mermax-purple focus:ring-1 focus:ring-mermax-purple transition-colors appearance-none">
+                                <option value="" disabled selected>Selecciona una opción</option>
+                                <option value="recoger">Contamos con transporte para ir a recoger las donaciones</option>
+                                <option value="entregar">Necesitamos que nos entreguen las donaciones en nuestra dirección</option>
+                                <option value="ambos">Ambas opciones son viables</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Food Needs -->
+                <div>
+                    <h2 class="text-xl font-bold text-white mb-5 border-b border-navy-700 pb-2">3. Necesidades Alimentarias</h2>
+                    
+                    <label class="block text-sm font-medium text-gray-300 mb-3">¿Qué tipos de alimentos pueden recibir y manejar? * (Selecciona al menos uno)</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="foodTypesGroup">
+                        <label class="flex items-center space-x-3 p-3 bg-navy-900 border border-navy-700 rounded-lg cursor-pointer hover:border-mermax-green transition-colors">
+                            <input type="checkbox" name="foodType" value="verduras" class="mermax-check">
+                            <span class="text-gray-300 text-sm">Verduras y Frutas</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-navy-900 border border-navy-700 rounded-lg cursor-pointer hover:border-mermax-green transition-colors">
+                            <input type="checkbox" name="foodType" value="carnes" class="mermax-check">
+                            <span class="text-gray-300 text-sm">Carnes / Proteínas</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-navy-900 border border-navy-700 rounded-lg cursor-pointer hover:border-mermax-green transition-colors">
+                            <input type="checkbox" name="foodType" value="lacteos" class="mermax-check">
+                            <span class="text-gray-300 text-sm">Lácteos y Perecederos</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-navy-900 border border-navy-700 rounded-lg cursor-pointer hover:border-mermax-green transition-colors">
+                            <input type="checkbox" name="foodType" value="abarrotes" class="mermax-check">
+                            <span class="text-gray-300 text-sm">Abarrotes (Secos/Latas)</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-navy-900 border border-navy-700 rounded-lg cursor-pointer hover:border-mermax-green transition-colors">
+                            <input type="checkbox" name="foodType" value="preparada" class="mermax-check">
+                            <span class="text-gray-300 text-sm">Comida Preparada</span>
+                        </label>
+                    </div>
+                    <p class="text-red-400 text-xs mt-2 hidden" id="checkboxError">Por favor, selecciona al menos un tipo de alimento.</p>
+                </div>
+
+                <!-- Global Error Message -->
+                <div id="globalError" class="hidden bg-red-900/30 border border-red-800 text-red-300 px-4 py-3 rounded-lg text-sm">
+                    Por favor, completa todos los campos requeridos correctamente antes de continuar.
+                </div>
+
+                <!-- Submit Button -->
+                <div class="pt-4 border-t border-navy-700">
+                    <button type="submit" class="w-full bg-mermax-purple hover:bg-mermax-purpleLight text-white text-lg font-bold py-4 px-8 rounded-lg shadow-[0_0_15px_rgba(123,44,191,0.4)] transition-all duration-300 transform hover:-translate-y-1">
+                        Enviar Solicitud de Registro
+                    </button>
+                    <p class="text-center text-xs text-gray-500 mt-4">
+                        Al registrarte, validaremos tu perfil para garantizar la seguridad e higiene en el manejo de alimentos.
+                    </p>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
+            <!-- Backdrop -->
+            <div class="fixed inset-0 transition-opacity bg-navy-900 bg-opacity-80 backdrop-blur-sm" aria-hidden="true" onclick="closeModal()"></div>
+
+            <!-- Modal Panel -->
+            <div class="relative inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-navy-800 border border-navy-700 rounded-2xl shadow-2xl sm:my-8 sm:align-middle sm:max-w-md sm:w-full sm:p-6">
+                <div>
+                    <div class="flex items-center justify-center w-16 h-16 mx-auto bg-green-900/30 rounded-full border border-mermax-green/30">
+                        <!-- Check Icon -->
+                        <svg class="w-8 h-8 text-mermax-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <div class="mt-5 text-center">
+                        <h3 class="text-2xl font-bold text-white mb-2" id="modal-title">¡Registro Recibido!</h3>
+                        <p class="text-sm text-gray-400">
+                            Gracias por tu interés en recibir donaciones. Tu solicitud ha sido enviada exitosamente. Nuestro equipo revisará tus datos y te contactará pronto para coordinar las siguientes etapas.
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-8 sm:mt-6">
+                    <button type="button" onclick="closeModal()" class="inline-flex justify-center w-full px-4 py-3 text-base font-bold text-navy-900 bg-mermax-green border border-transparent rounded-lg shadow-[0_0_10px_rgba(0,209,133,0.3)] hover:bg-mermax-greenHover focus:outline-none transition-all">
+                        Cerrar y Volver
                     </button>
                 </div>
             </div>
@@ -243,61 +242,67 @@
 
     <!-- Logic Script -->
     <script>
-        // Update label dynamically based on payment method selection
-        function updatePaymentDetailsLabel() {
-            const method = document.getElementById('paymentMethod').value;
-            const label = document.getElementById('paymentDetailsLabel');
-            const input = document.getElementById('paymentDetails');
+        const form = document.getElementById('beneficiaryForm');
+        const modal = document.getElementById('successModal');
+        const globalError = document.getElementById('globalError');
+        const checkboxError = document.getElementById('checkboxError');
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Evita recargar la página
             
-            switch(method) {
-                case 'clabe':
-                    label.textContent = 'Número de CLABE (18 dígitos) *';
-                    input.placeholder = 'Ej. 012345678901234567';
-                    input.type = 'number';
-                    break;
-                case 'paypal':
-                    label.textContent = 'Correo asociado a PayPal *';
-                    input.placeholder = 'correo@ejemplo.com';
-                    input.type = 'email';
-                    break;
-                case 'zelle':
-                    label.textContent = 'Correo o Teléfono de Zelle *';
-                    input.placeholder = 'Ingresa tu contacto de Zelle';
-                    input.type = 'text';
-                    break;
-                case 'cripto':
-                    label.textContent = 'Dirección de Billetera *';
-                    input.placeholder = '0x...';
-                    input.type = 'text';
-                    break;
-                default:
-                    label.textContent = 'Detalles de la Cuenta *';
-                    input.placeholder = 'Ingresa los datos de recepción';
-                    input.type = 'text';
+            let isValid = true;
+            
+            // 1. Validar campos requeridos estándar (inputs, selects, radios)
+            const requiredFields = form.querySelectorAll('[required]');
+            requiredFields.forEach(field => {
+                if (!field.value.trim() || (field.type === 'radio' && !form.querySelector(`input[name="${field.name}"]:checked`))) {
+                    isValid = false;
+                    field.classList.add('border-red-500');
+                } else {
+                    field.classList.remove('border-red-500');
+                }
+            });
+
+            // 2. Validar grupo de checkboxes (al menos 1)
+            const checkboxes = form.querySelectorAll('input[name="foodType"]');
+            let isChecked = Array.from(checkboxes).some(cb => cb.checked);
+            
+            if (!isChecked) {
+                isValid = false;
+                checkboxError.classList.remove('hidden');
+            } else {
+                checkboxError.classList.add('hidden');
             }
-        }
 
-        // Form submission handling
-        document.getElementById('donationForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent standard form submission
-
-            // Here you would normally send the data to a backend via fetch()
-            // For now, we simulate a successful submission
-
-            // Show custom success modal
-            const modal = document.getElementById('successModal');
-            modal.classList.remove('hidden');
-
-            // Reset the form
-            this.reset();
-            
-            // Reset the dynamic label
-            updatePaymentDetailsLabel();
+            // 3. Resultado de validación
+            if (isValid) {
+                globalError.classList.add('hidden');
+                
+                // Mostrar Modal de Éxito
+                modal.classList.remove('hidden');
+                
+                // Limpiar formulario
+                form.reset();
+                // Limpiar estilos de error si los hubiera
+                requiredFields.forEach(f => f.classList.remove('border-red-500'));
+            } else {
+                globalError.classList.remove('hidden');
+            }
         });
 
-        // Close modal function
+        // Limpiar errores visuales al escribir/cambiar selección
+        form.addEventListener('input', function(e) {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') {
+                e.target.classList.remove('border-red-500');
+            }
+            if (e.target.name === 'foodType') {
+                checkboxError.classList.add('hidden');
+            }
+            globalError.classList.add('hidden');
+        });
+
+        // Función para cerrar el modal
         function closeModal() {
-            const modal = document.getElementById('successModal');
             modal.classList.add('hidden');
         }
     </script>
