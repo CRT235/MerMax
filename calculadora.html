@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Mermas y ROI - MerMax</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            900: '#0B0F19',
+                            800: '#161B28',
+                            700: '#1F2537'
+                        },
+                        mermax: {
+                            green: '#00D185',
+                            purple: '#7B2CBF',
+                            purpleLight: '#9D4EDD',
+                            blueDark: '#14213D'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0B0F19; /* Navy 900 */
+            color: #e2e8f0;
+        }
+        /* Custom range slider styling */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: #00D185;
+            cursor: pointer;
+            margin-top: -6px;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #334155;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto space-y-6">
+        
+        <!-- Header Section -->
+        <header class="bg-navy-800 rounded-2xl p-6 border border-navy-700 shadow-lg flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Selecciona el horizonte de evaluación</h3>
+                <div class="flex items-center gap-3">
+                    <h1 id="yearTitle" class="text-4xl font-extrabold text-mermax-green">Año 1 (2026)</h1>
+                    <span id="yearBadge" class="bg-mermax-purple text-white text-xs font-bold px-3 py-1 rounded-full">Optimización Inicial</span>
+                </div>
+            </div>
+            <div class="flex gap-2 bg-navy-900 p-1 rounded-lg border border-navy-700" id="yearTabs">
+                <button data-year="1" class="year-btn bg-mermax-purple px-4 py-1.5 rounded-md text-sm font-semibold text-white">Año 1</button>
+                <button data-year="2" class="year-btn px-4 py-1.5 rounded-md text-sm font-medium text-gray-400 hover:text-white transition">Año 2</button>
+                <button data-year="3" class="year-btn px-4 py-1.5 rounded-md text-sm font-medium text-gray-400 hover:text-white transition">Año 3</button>
+                <button data-year="4" class="year-btn px-4 py-1.5 rounded-md text-sm font-medium text-gray-400 hover:text-white transition">Año 4</button>
+                <button data-year="5" class="year-btn px-4 py-1.5 rounded-md text-sm font-medium text-gray-400 hover:text-white transition">Año 5</button>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            
+            <!-- Left Sidebar: Controls -->
+            <aside class="lg:col-span-1 bg-navy-800 rounded-2xl p-6 border border-navy-700 shadow-lg flex flex-col gap-6">
+                <div>
+                    <h2 class="text-lg font-bold text-white mb-4 border-b border-navy-700 pb-2">Parámetros del Negocio</h2>
+                    
+                    <div class="space-y-4">
+                        <!-- Restaurant Size -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1">Tamaño del Restaurante</label>
+                            <select id="restSize" class="w-full bg-navy-900 border border-navy-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-mermax-green focus:ring-1 focus:ring-mermax-green transition-colors">
+                                <option value="small">Pequeño (1-5 sucursales)</option>
+                                <option value="medium" selected>Mediano (6-15 sucursales)</option>
+                                <option value="large">Grande (16+ sucursales)</option>
+                            </select>
+                        </div>
+
+                        <!-- Monthly Volume -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1">Inventario Mensual (Kg)</label>
+                            <input type="number" id="monthlyInv" value="3000" class="w-full bg-navy-900 border border-navy-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-mermax-green focus:ring-1 focus:ring-mermax-green transition-colors">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-bold text-gray-300 mb-3">Distribución de Insumos (%)</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <label class="text-mermax-green font-medium">Verduras</label>
+                                <span id="valVerduras">35%</span>
+                            </div>
+                            <input type="range" id="percVerduras" min="0" max="100" value="35" class="w-full">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <label class="text-mermax-purpleLight font-medium">Carnes</label>
+                                <span id="valCarnes">25%</span>
+                            </div>
+                            <input type="range" id="percCarnes" min="0" max="100" value="25" class="w-full">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <label class="text-mermax-blueDark text-indigo-400 font-medium">Lácteos</label>
+                                <span id="valLacteos">30%</span>
+                            </div>
+                            <input type="range" id="percLacteos" min="0" max="100" value="30" class="w-full">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <label class="text-blue-500 font-medium">Abarrotes</label>
+                                <span id="valAbarrotes">10%</span>
+                            </div>
+                            <input type="range" id="percAbarrotes" min="0" max="100" value="10" class="w-full">
+                        </div>
+                        
+                        <div id="distWarning" class="hidden text-xs text-red-400 mt-2 bg-red-900/20 p-2 rounded border border-red-800/50">
+                            La suma debe ser 100%. (Actualmente: <span id="distTotal">100</span>%)
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Right Content: Metrics & Charts -->
+            <main class="lg:col-span-3 space-y-6">
+                
+                <!-- KPI Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Card 1 -->
+                    <div class="bg-navy-800 rounded-2xl p-5 border-t-4 border-mermax-green shadow-lg">
+                        <h4 class="text-xs font-bold text-gray-400 mb-2 uppercase">Ahorro Anual Estimado</h4>
+                        <div class="text-3xl font-extrabold text-mermax-green mb-1" id="kpiSavings">$0 MXN</div>
+                        <p class="text-xs text-gray-500" id="kpiSavingsUSD">Equivalente a ~$0 USD/año</p>
+                    </div>
+                    
+                    <!-- Card 2 -->
+                    <div class="bg-navy-800 rounded-2xl p-5 border-t-4 border-mermax-purple shadow-lg">
+                        <h4 class="text-xs font-bold text-gray-400 mb-2 uppercase">Reducción de Merma</h4>
+                        <div class="text-3xl font-extrabold text-mermax-purpleLight mb-1">-34%</div>
+                        <p class="text-xs text-gray-500">Sobre el desperdicio evitable</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-navy-800 rounded-2xl p-5 border-t-4 border-indigo-500 shadow-lg">
+                        <h4 class="text-xs font-bold text-gray-400 mb-2 uppercase">Alimento Recuperado</h4>
+                        <div class="text-3xl font-extrabold text-white mb-1"><span id="kpiRecovered">0</span> kg</div>
+                        <p class="text-xs text-gray-500">Aprovechado en menú y descuentos</p>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="bg-navy-800 rounded-2xl p-5 border-t-4 border-teal-400 shadow-lg">
+                        <h4 class="text-xs font-bold text-gray-400 mb-2 uppercase">Huella de CO₂ Evitada</h4>
+                        <div class="text-3xl font-extrabold text-teal-400 mb-1"><span id="kpiCO2">0</span> kg</div>
+                        <p class="text-xs text-gray-500">Impacto ambiental positivo</p>
+                    </div>
+                </div>
+
+                <!-- Charts Area -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Line Chart -->
+                    <div class="bg-white rounded-2xl p-6 shadow-xl text-gray-800">
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <h3 class="text-lg font-bold text-navy-900">Curva de Ahorro Trimestral (USD)</h3>
+                                <p class="text-xs text-gray-500">Comparativa: Desperdicio sin control vs. Ahorro con MerMax</p>
+                            </div>
+                            <span id="chartYearBadge" class="bg-purple-100 text-purple-700 text-xs font-bold px-2 py-1 rounded">Proyección Año 1</span>
+                        </div>
+                        <div class="relative h-64 w-full">
+                            <canvas id="lineChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Bar Chart -->
+                    <div class="bg-white rounded-2xl p-6 shadow-xl text-gray-800">
+                        <h3 class="text-lg font-bold text-navy-900 mb-1">Recuperación por Categoría (Kg)</h3>
+                        <p class="text-xs text-gray-500 mb-4">Insumos salvados anualmente</p>
+                        <div class="relative h-64 w-full">
+                            <canvas id="barChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Constants & Config
+        const EXCHANGE_RATE = 18.5; // USD to MXN approx
+        const WASTE_RATE_BASELINE = 0.15; // 15% average waste without software
+        const REDUCTION_RATE = 0.34; // MerMax reduces 34% of the waste
+        const CO2_FACTOR = 2.5; // kg of CO2 avoided per kg of food saved
+        
+        // Year State
+        let currentYear = 1;
+        const BASE_YEAR = 2026;
+        const ANNUAL_GROWTH_RATE = 1.10; // 10% annual increase in volume/costs
+
+        // Average cost per kg in MXN
+        const PRICE_KG = {
+            verduras: 45,
+            carnes: 220,
+            lacteos: 130,
+            abarrotes: 70
+        };
+
+        // DOM Elements
+        const inputs = {
+            inv: document.getElementById('monthlyInv'),
+            verduras: document.getElementById('percVerduras'),
+            carnes: document.getElementById('percCarnes'),
+            lacteos: document.getElementById('percLacteos'),
+            abarrotes: document.getElementById('percAbarrotes')
+        };
+        const labels = {
+            verduras: document.getElementById('valVerduras'),
+            carnes: document.getElementById('valCarnes'),
+            lacteos: document.getElementById('valLacteos'),
+            abarrotes: document.getElementById('valAbarrotes')
+        };
+        
+        // Charts instances
+        let lineChart, barChart;
+
+        // Initialize Charts
+        function initCharts() {
+            // Line Chart Setup
+            const ctxLine = document.getElementById('lineChart').getContext('2d');
+            lineChart = new Chart(ctxLine, {
+                type: 'line',
+                data: {
+                    labels: ['Trimestre 1', 'Trimestre 2', 'Trimestre 3', 'Trimestre 4'],
+                    datasets: [
+                        {
+                            label: 'Ahorro Recuperado con MerMax (USD)',
+                            borderColor: '#00D185',
+                            backgroundColor: 'rgba(0, 209, 133, 0.1)',
+                            borderWidth: 3,
+                            pointBackgroundColor: '#00D185',
+                            pointRadius: 5,
+                            fill: true,
+                            data: [0, 0, 0, 0],
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Pérdida Tradicional sin Software (USD)',
+                            borderColor: '#7B2CBF',
+                            borderDash: [5, 5],
+                            borderWidth: 2,
+                            pointBackgroundColor: '#7B2CBF',
+                            pointRadius: 5,
+                            fill: false,
+                            data: [0, 0, 0, 0],
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { boxWidth: 12, usePointStyle: true } }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { callback: (value) => '$' + value.toLocaleString() }
+                        }
+                    }
+                }
+            });
+
+            // Bar Chart Setup
+            const ctxBar = document.getElementById('barChart').getContext('2d');
+            barChart = new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: ['Verduras', 'Carnes', 'Lácteos', 'Abarrotes'],
+                    datasets: [{
+                        label: 'Kg Recuperados',
+                        data: [0, 0, 0, 0],
+                        backgroundColor: [
+                            '#34d399', // Green
+                            '#7B2CBF', // Purple
+                            '#1e1b4b', // Dark Blue
+                            '#6366f1'  // Indigo
+                        ],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        }
+
+        // Calculation & Update Logic
+        function calculate() {
+            // 1. Get raw inputs
+            let monthlyKg = parseFloat(inputs.inv.value) || 0;
+            let pV = parseInt(inputs.verduras.value) || 0;
+            let pC = parseInt(inputs.carnes.value) || 0;
+            let pL = parseInt(inputs.lacteos.value) || 0;
+            let pA = parseInt(inputs.abarrotes.value) || 0;
+
+            // Update Labels
+            labels.verduras.textContent = pV + '%';
+            labels.carnes.textContent = pC + '%';
+            labels.lacteos.textContent = pL + '%';
+            labels.abarrotes.textContent = pA + '%';
+
+            // Check distribution sum
+            const totalPerc = pV + pC + pL + pA;
+            const warningEl = document.getElementById('distWarning');
+            if (totalPerc !== 100) {
+                warningEl.classList.remove('hidden');
+                document.getElementById('distTotal').textContent = totalPerc;
+            } else {
+                warningEl.classList.add('hidden');
+            }
+
+            // Normalize percentages for math calculation to avoid math errors if they don't sum to 100
+            const factor = totalPerc > 0 ? (100 / totalPerc) : 1;
+            const nV = (pV * factor) / 100;
+            const nC = (pC * factor) / 100;
+            const nL = (pL * factor) / 100;
+            const nA = (pA * factor) / 100;
+
+            // Apply growth factor based on selected year
+            const growthFactor = Math.pow(ANNUAL_GROWTH_RATE, currentYear - 1);
+
+            // 2. Base calculations
+            const yearlyInvKg = (monthlyKg * 12) * growthFactor;
+            const yearlyWasteBaseline = yearlyInvKg * WASTE_RATE_BASELINE;
+            const yearlyRecoveredKg = yearlyWasteBaseline * REDUCTION_RATE;
+
+            // 3. Category Breakdown (Kg)
+            const recVerduras = yearlyRecoveredKg * nV;
+            const recCarnes = yearlyRecoveredKg * nC;
+            const recLacteos = yearlyRecoveredKg * nL;
+            const recAbarrotes = yearlyRecoveredKg * nA;
+
+            // 4. Financial Savings (MXN)
+            const savingsMXN = 
+                (recVerduras * PRICE_KG.verduras) +
+                (recCarnes * PRICE_KG.carnes) +
+                (recLacteos * PRICE_KG.lacteos) +
+                (recAbarrotes * PRICE_KG.abarrotes);
+            
+            const savingsUSD = savingsMXN / EXCHANGE_RATE;
+            const lossBaselineMXN = savingsMXN / REDUCTION_RATE; // Traditional total cost of waste
+            const lossBaselineUSD = lossBaselineMXN / EXCHANGE_RATE;
+
+            // 5. Environmental
+            const co2Avoided = yearlyRecoveredKg * CO2_FACTOR;
+
+            // --- DOM Updates ---
+            const formatMoney = (val) => new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 }).format(val);
+            const formatNum = (val) => new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(val);
+
+            document.getElementById('kpiSavings').textContent = formatMoney(savingsMXN);
+            document.getElementById('kpiSavingsUSD').textContent = `Equivalente a ~${new Intl.NumberFormat('en-US', {style:'currency', currency:'USD', maximumFractionDigits:0}).format(savingsUSD)}/año`;
+            document.getElementById('kpiRecovered').textContent = formatNum(yearlyRecoveredKg);
+            document.getElementById('kpiCO2').textContent = formatNum(co2Avoided);
+
+            // --- Chart Updates ---
+            // Update Line Chart (Cumulative Quarterly)
+            const qSavings = savingsUSD / 4;
+            const qLoss = lossBaselineUSD / 4;
+            
+            // Generate cumulative data
+            lineChart.data.datasets[0].data = [qSavings, qSavings*2, qSavings*3, qSavings*4];
+            lineChart.data.datasets[1].data = [qLoss, qLoss*2, qLoss*3, qLoss*4];
+            lineChart.update();
+
+            // Update Bar Chart
+            barChart.data.datasets[0].data = [recVerduras, recCarnes, recLacteos, recAbarrotes];
+            barChart.update();
+        }
+
+        // Attach Event Listeners
+        window.addEventListener('DOMContentLoaded', () => {
+            initCharts();
+            
+            // Year selection logic
+            const yearButtons = document.querySelectorAll('.year-btn');
+            yearButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    currentYear = parseInt(e.target.getAttribute('data-year'));
+                    
+                    // Update buttons UI
+                    yearButtons.forEach(b => {
+                        b.className = 'year-btn px-4 py-1.5 rounded-md text-sm font-medium text-gray-400 hover:text-white transition';
+                    });
+                    e.target.className = 'year-btn bg-mermax-purple px-4 py-1.5 rounded-md text-sm font-semibold text-white';
+                    
+                    // Update Header UI
+                    document.getElementById('yearTitle').textContent = `Año ${currentYear} (${BASE_YEAR + currentYear - 1})`;
+                    const badges = ["Optimización Inicial", "Crecimiento", "Consolidación", "Expansión", "Madurez"];
+                    document.getElementById('yearBadge').textContent = badges[currentYear - 1];
+                    document.getElementById('chartYearBadge').textContent = `Proyección Año ${currentYear}`;
+                    
+                    calculate();
+                });
+            });
+
+            // Constrain slider inputs to not exceed 100% total
+            const sliderInputs = [inputs.verduras, inputs.carnes, inputs.lacteos, inputs.abarrotes];
+            
+            sliderInputs.forEach(slider => {
+                slider.addEventListener('input', function() {
+                    // Calculate sum of the other sliders
+                    let sumOthers = 0;
+                    sliderInputs.forEach(other => {
+                        if (other !== slider) {
+                            sumOthers += parseInt(other.value) || 0;
+                        }
+                    });
+                    
+                    // Prevent the current slider from exceeding the remaining percentage
+                    const maxAllowed = 100 - sumOthers;
+                    if (parseInt(slider.value) > maxAllowed) {
+                        slider.value = maxAllowed;
+                    }
+                    
+                    calculate();
+                });
+            });
+
+            // Listen to other standard inputs
+            const otherInputs = [inputs.inv, document.getElementById('restSize')];
+            otherInputs.forEach(input => {
+                input.addEventListener('input', calculate);
+            });
+
+            // Initial calculation
+            calculate();
+        });
+    </script>
+</body>
+</html>
